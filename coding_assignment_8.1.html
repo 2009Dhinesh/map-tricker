@@ -1,0 +1,58 @@
+<html>
+</html>
+<head>
+<meta charset="utf-8">
+<title>Map moving</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+<style>
+    button{
+        position: absolute;
+        margin-top: 10px;
+        margin-left: 10px;
+        z-index: 1000;
+    }
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+    <div id="map">
+        <button onclick="btn()">Show stops between Gundhipuram to Sulur</button>
+    </div>
+    <script>
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoicmFuaml0aGFrdW1hcmkiLCJhIjoiY2xtdWRsbWJ2MGdydTJrb2NsbHFxb2FtZCJ9.-qKxuxJvt-qwoSwa-hBXeA';
+        const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 12,
+        center: [76.96711863969782,11.014471069396253]
+        });
+        var right=[11.014471069396253,11.016243440420839,11.014152408635345,11.013352287173058,11.019571867432981,11.019538608036315,
+        11.023712638120179,11.024710405481754,11.025616707902195,11.026528,11.020062037321333,11.00781422982698,11.000958184039767,
+        11.003822787849451,11.00338046114437,11.002611653606005,11.004970727852672,11.007772104035393,11.008372395467246,11.014090899821314,
+        11.022294600709685,11.0246324555898,11.025053688749825,11.028622409324957];
+        var left=[76.96711863969782,76.9684081491583,76.98022748503595,76.98655454831791,76.99162870647146,76.9915948223056,
+        77.00254788826238,77.00751192283123,77.0146276037395,77.02068908465665,77.02256663095669,77.02573163760005,77.03106386907704,
+        77.04419596439776,77.04937799222832,77.05994589571326,77.06626518013262,77.0712540888975,77.07564218284863,77.08689673187936,
+        77.10346205479743,77.11094005348278,77.12013466601404,77.12983825720417];
+
+        var value =0
+        const marker2 = new mapboxgl.Marker()
+
+        function btn(){
+        setInterval(move,1000)
+
+        }
+        function move(){
+        marker2
+        .setLngLat([left[value],right[value]])
+        .addTo(map);
+        value++
+        }
+    </script>
+</body>
+</html>
+
